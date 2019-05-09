@@ -1,25 +1,21 @@
-package com.chenwen.interceptor;
+package com.chenwen.producer.interceptor;
 
-
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 import org.apache.kafka.clients.producer.ProducerInterceptor;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Map;
 
-/**
- *
- *
- * 时间拦截器
- *
- * @author chenwen
- *
- */
-public class TimeInterceptor implements ProducerInterceptor<String, String> {
+public class Interceptor02 implements ProducerInterceptor {
+
+    Log log = LogFactory.get();
+
     @Override
-    public ProducerRecord<String, String> onSend(ProducerRecord<String, String> record) {
-        return new ProducerRecord(record.topic(), record.partition(), record.timestamp(), record.key(),
-                System.currentTimeMillis() + "," + record.value().toString());
+    public ProducerRecord onSend(ProducerRecord producerRecord) {
+        log.info(producerRecord.value() + "通过 " + this.getClass().getName());
+        return producerRecord;
     }
 
     @Override

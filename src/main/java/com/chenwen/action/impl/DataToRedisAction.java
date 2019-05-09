@@ -4,11 +4,13 @@ package com.chenwen.action.impl;
 import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import com.alibaba.fastjson.JSONObject;
 import com.chenwen.action.IAction;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import redis.clients.jedis.Jedis;
 
 import java.util.Iterator;
+import java.util.Set;
 import java.util.logging.Level;
 
 /**
@@ -38,8 +40,16 @@ public class DataToRedisAction implements IAction {
         while (iterator.hasNext()) {
             Object record_obj = iterator.next();
             ConsumerRecord<String, String> record = (ConsumerRecord<String, String>)record_obj;
-            String key = record.partition() + "_" +record.offset();
-            jedis.set(key, record.value());
+            String key = Thread.currentThread().getName() + "_" +record.offset();
+            JSONObject jsonObject = JSONObject.parseObject(record.value());
+
+            Set<String> redisKeys = jsonObject.keySet();
+
+            for (String  redisKey: redisKeys) {
+                String value = jsonObject.getString(redisKey);
+                jedis.hset(key, redisKey, value);
+            }
+
             log.info(key + "插入成功..", Level.INFO);
         }
 
