@@ -1,0 +1,20 @@
+#-------------------------------------------------------------------------------
+# Redis客户端
+# 地址，默认localhost
+host = centos01
+# 端口，默认6379
+port = 6379
+# 超时，默认2000
+timeout = 2000
+# 连接超时，默认timeout
+connectionTimeout = 2000
+# 读取超时，默认timeout
+soTimeout = 2000
+# 密码，默认无
+password =
+# 数据库序号，默认0
+database = 0
+# 客户端名，默认"DataToRedis"
+clientName = DataToRedis
+# SSL连接，默认false
+ssl = false;
