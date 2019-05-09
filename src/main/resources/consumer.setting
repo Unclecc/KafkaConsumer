@@ -1,4 +1,4 @@
-# [] ¿ÉÒÔ±íÊ¾·Ö×é
+# [] å¯ä»¥è¡¨ç¤ºåˆ†ç»„
 [redis]
 bootstrap.servers=centos01:9092
 group.id=datatoredis
@@ -9,7 +9,7 @@ auto.offset.reset=latest
 key.deserializer=org.apache.kafka.common.serialization.StringDeserializer
 value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
 topic=datatoredis2
-# 0 »òÕß "" Ôò¸ù¾İpartitionµÄÊıÁ¿´´½¨Ïß³Ì..
+# 0 æˆ–è€… "" åˆ™æ ¹æ®partitionçš„æ•°é‡åˆ›å»ºçº¿ç¨‹..
 consumer.threads=0
 action.class=com.chenwen.action.impl.DataToRedisAction
 [mongodb]
