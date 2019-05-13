@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="KafkaClient" />
         <module name="KafkaDataConsumer" />
+        <module name="KafkDataConsumer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
@@ -15,7 +15,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="KafkaClient" options="" />
+      <module name="KafkDataConsumer" options="" />
     </option>
   </component>
 </project>
