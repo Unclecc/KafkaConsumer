@@ -7,7 +7,8 @@ import cn.hutool.setting.GroupedMap;
 import cn.hutool.setting.Setting;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
-import java.util.*;
+import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -35,7 +36,8 @@ public class ConsumerMain {
                 // 若没有指定线程数则默认按照partitions数量开启线程;
                 KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(properties);
                 int partitions = kafkaConsumer.partitionsFor(topic).size();
-                properties.put("partitions", partitions+"");
+                log.info("消费组" + group + "无指定消费线程数, 正在按照topic的partition数量 "+ partitions +"创建线程数目..");
+
                 consumerPool.submit(new DataConsumer(kafkaConsumer, topic, ReflectUtil.newInstance(actionClass)));
                 for (int i = 1; i < partitions; i++) {
                     KafkaConsumer<String, String> kafkaConsumer2 = new KafkaConsumer<>(properties);
@@ -43,7 +45,7 @@ public class ConsumerMain {
                 }
             } else {
                 // 指定了线程数;
-                log.info(topic + "消费者开启"+ threads + "个线程, 消费者即将创建..");
+                log.info("消费者组" + group + "指定了线程数量" + threads + ", 正在创建线程..");
 
                 for (int i = 0; i < threads ; i++) {
                     KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String, String>(properties);

@@ -1,3 +1,5 @@
+package com.chenwen.test;
+
 import cn.hutool.core.util.StrUtil;
 import org.junit.Test;
 

@@ -20,7 +20,7 @@ public class KafkaDataProducer {
             studentList.add(new Student(i, "person"+i, i, new Date(), 0.5f + i));
         }
 
-        produceProcess("redis", studentList);
+        produceProcess("mongodb", studentList);
     }
 
     public static void produceProcess(String dbType, Collection collection) {

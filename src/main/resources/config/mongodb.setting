@@ -1,0 +1,4 @@
+mongodb.host=centos01
+mongodb.port=27017
+mongodb.db=kafka
+mongodb.collection=datatomongodb

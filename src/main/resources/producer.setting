@@ -10,3 +10,16 @@ value.serializer=org.apache.kafka.common.serialization.StringSerializer
 #拦截器用逗号(,)分隔多个
 interceptors=com.chenwen.producer.interceptor.Interceptor01,com.chenwen.producer.interceptor.Interceptor02
 topic=datatoredis2
+
+[mongodb]
+bootstrap.servers=centos01:9092
+acks=all
+retries=0
+batch.size=16384
+linger.ms=1
+buffer.memory=33554432
+key.serializer=org.apache.kafka.common.serialization.StringSerializer
+value.serializer=org.apache.kafka.common.serialization.StringSerializer
+#拦截器用逗号(,)分隔多个
+interceptors=com.chenwen.producer.interceptor.Interceptor01,com.chenwen.producer.interceptor.Interceptor02
+topic=datatomongodb
